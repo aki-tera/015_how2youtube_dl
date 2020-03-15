@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+body{
+  margin:3em;
+  text-align:center;
+  font-size:20px
+}
+
+h1{
+  color:#242424;
+  background-color:#FFF200;
+  font-size:3em;
+  font-weight:bold;
+  padding-left:100px;
+  padding-right:100px;
+}
+
+#return_page{
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color:#242424;
+  font-size:3em;
+  background-color:#F5F5F5;
+  border: double 10px #FFF200;
+  border-radius: 3px;
+  transition: .4s;
+}
+#return_page:hover {
+  background: #FFF200;
+}
