@@ -66,9 +66,9 @@ def rss_checker(RC_rss_path):
     """
     try:
         tree = ET.parse(RC_rss_path)
-        print(tree)
+        #print(tree)
         root = tree.getroot()
-        print(root)
+        #print(root)
         #XPathでtitle数をカウントする
         counter = len(root.findall("./*/*/title"))+1
     except:
@@ -231,8 +231,8 @@ def main():
     ydl_opts["outtmpl"] = down_dir+outtmpl
 
     #進捗確認のための将来対応
-    ydl_opts["logger"] = MyLogger()
-    ydl_opts["progress_hooks"] = [my_hook]
+    #ydl_opts["logger"] = MyLogger()
+    #ydl_opts["progress_hooks"] = [my_hook]
 
     #（将来対応）
     #podcastフォルダ内にファイルが多数あれば、削除する
