@@ -124,7 +124,15 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
 
     #ファイルの詳細情報を入手する
     #aタグや全角スペースの削除、改行追加
-    video_description = re.sub("<a.*?>|</a>|\u3000", " ", video_description).replace("<br />", "<br>").replace("<br>", "\n")
+    YD_temp = re.sub("<a.*?>|</a>|\u3000", " ", video_description).replace("<br />", "<br>").replace("<br>", "\n")
+    #XMLの特殊文字対応、但しタグ以外の文字にのみ適用
+    # & -> chr(38) ->&amp;
+    # ' ->chr(39) ->&apos;
+    # " -> chr(34) ->&quot;
+    # > -> &gt;
+    # < -> &lt;
+    video_description = YD_temp.replace(chr(38), "&amp;").replace(chr(39), "&apos;").replace(chr(34), "&quot;").replace(">", "&gt;").replace("<", "&lt;")
+    video_title = video_title.replace(chr(38), "&amp;").replace(chr(39), "&apos;").replace(chr(34), "&quot;").replace(">", "&gt;").replace("<", "&lt;")
 
     #ダウンロードしたファイル名+拡張子を取得
     #getctimeで最新作成時のファイルを得る
