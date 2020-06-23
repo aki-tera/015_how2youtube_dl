@@ -61,7 +61,6 @@ def string_standardized(SS_string):
     SS_string:string
     """
 
-    #ファイルの詳細情報を入手する
     #aタグや全角スペースの削除、改行追加
     SS_string = re.sub("<a.*?>|</a>|\u3000", " ", SS_string).replace("<br />", "<br>").replace("<br>", "\n")
 
@@ -155,7 +154,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
             except:
                 time.sleep(60)
 
-
+    #ファイルの詳細情報を入手する
     video_title = string_standardized(video_title)
     video_description = string_standardized(video_description)
 
