@@ -49,6 +49,40 @@ html_body = """
 </html>
 """
 
+def string_standardized(SS_string):
+    """
+    指定の文字列をxmlの正規化を行う
+    Parameters
+    ----------
+    SS_string:string
+
+    Returns
+    ----------
+    SS_string:string
+    """
+
+    #ファイルの詳細情報を入手する
+    #aタグや全角スペースの削除、改行追加
+    SS_string = re.sub("<a.*?>|</a>|\u3000", " ", SS_string).replace("<br />", "<br>").replace("<br>", "\n")
+
+    #XMLの特殊文字対応、但しタグ以外の文字にのみ適用
+    # " -> chr(34) -> &quot;
+
+    # & -> chr(38) -> &amp;
+    # ' -> chr(39) -> &apos;
+    # + -> chr(43) -> &#043;
+    # / -> chr(47) -> &#047;
+    # < -> chr(60) -> &lt;
+    # > -> chr(62) -> &gt;
+    # ? -> chr(63) -> &#063;
+    # ／ -> chr(65295) -> &#047;
+    dic = {34:"&quot;", 38:"&amp;", 39:"&apos;", 43:"&#043;", 47:"&#047;", 60:"&lt;", 62:"&gt;", 65295:"&#047;"}
+    for i in dic:
+        SS_string = SS_string.replace(chr(i), dic[i])
+
+    return(SS_string)
+
+
 
 def rss_checker(RC_rss_path):
     """
@@ -122,17 +156,9 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
                 time.sleep(60)
 
 
-    #ファイルの詳細情報を入手する
-    #aタグや全角スペースの削除、改行追加
-    YD_temp = re.sub("<a.*?>|</a>|\u3000", " ", video_description).replace("<br />", "<br>").replace("<br>", "\n")
-    #XMLの特殊文字対応、但しタグ以外の文字にのみ適用
-    # & -> chr(38) ->&amp;
-    # ' ->chr(39) ->&apos;
-    # " -> chr(34) ->&quot;
-    # > -> &gt;
-    # < -> &lt;
-    video_description = YD_temp.replace(chr(38), "&amp;").replace(chr(39), "&apos;").replace(chr(34), "&quot;").replace(">", "&gt;").replace("<", "&lt;")
-    video_title = video_title.replace(chr(38), "&amp;").replace(chr(39), "&apos;").replace(chr(34), "&quot;").replace(">", "&gt;").replace("<", "&lt;")
+    video_title = string_standardized(video_title)
+    video_description = string_standardized(video_description)
+
 
     #ダウンロードしたファイル名+拡張子を取得
     #getctimeで最新作成時のファイルを得る
