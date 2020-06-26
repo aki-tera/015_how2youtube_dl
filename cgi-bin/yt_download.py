@@ -144,7 +144,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
             video_title = info_dict.get("title", None)
             video_description = info_dict.get("description", None)
             ydl.download([YT_url])
-    except ydl.DownloadError:
+    except BaseException:
         # エラーが出た際に継続処理をさせる
         YT_ydl_opts["continue"] = True
         for i in range(100):
@@ -152,7 +152,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
                 with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
                     ydl.download([YT_url])
                 break
-            except ydl.DownloadError:
+            except BaseException:
                 time.sleep(60)
 
 # ファイルの詳細情報を入手する
