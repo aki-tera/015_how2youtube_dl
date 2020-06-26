@@ -75,7 +75,9 @@ def string_standardized(SS_string):
     # > -> chr(62) -> &gt;
     # ? -> chr(63) -> &#063;
     # ／ -> chr(65295) -> &#047;
-    dic = {34: "&quot;", 38: "&amp;", 39: "&apos;", 43: "&#043;", 47: "&#047;", 60: "&lt;", 62: "&gt;", 65295: "&#047;"}
+    # ＋ -> chr(65291) -> &#043;
+    dic = {34: "&quot;", 38: "&amp;", 39: "&apos;", 43: "&#043;", 47: "&#047;",
+           60: "&lt;", 62: "&gt;", 65295: "&#047;", 65291: "&#043;"}
     for i in dic:
         SS_string = SS_string.replace(chr(i), dic[i])
 
@@ -168,7 +170,8 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
 # 登録する日時は現在のものとする
     file_time = utils.formatdate(time.time())
 
-    return(latest_file, video_title, video_description, file_size, file_type, file_time)
+    return(latest_file, video_title, video_description, file_size, file_type,
+           file_time)
 
 
 def rss_modify(RM_rss_path, RM_data):
