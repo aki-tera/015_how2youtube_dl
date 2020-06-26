@@ -147,7 +147,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
     except BaseException:
         # エラーが出た際に継続処理をさせる
         YT_ydl_opts["continue"] = True
-        for i in range(100):
+        for i in range(200):
             try:
                 with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
                     ydl.download([YT_url])
