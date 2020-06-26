@@ -4,32 +4,31 @@
 import cgi
 
 # デバッグ用
-#import cgitb
-#cgitb.enable(display=0, logdir="/podcast/")
+# import cgitb
+# cgitb.enable(display=0, logdir="/podcast/")
 
-#PythonのCGIスクリプトから出力したHTMLの日本語文字化け防止
+# PythonのCGIスクリプトから出力したHTMLの日本語文字化け防止
 import sys
 import io
 
-#rssのタグチェック
+# rssのタグチェック
 import xml.etree.ElementTree as ET
 
-#youtubeのダウンロード
+# youtubeのダウンロード
 import youtube_dl
 
-#一番新しいファイルを取得
+# 一番新しいファイルを取得
 import glob
 import os
 
-#現在時刻を取得、時間の形式はRFC 2822
+# 現在時刻を取得、時間の形式はRFC 2822
 import time
 from email import utils
 
-#ファイルの入出力をutf-8にする
+# ファイルの入出力をutf-8にする
 import codecs
 
 import re
-
 
 
 html_body = """
@@ -49,6 +48,7 @@ html_body = """
 </html>
 """
 
+
 def string_standardized(SS_string):
     """
     指定の文字列をxmlの正規化を行う
@@ -61,10 +61,10 @@ def string_standardized(SS_string):
     SS_string:string
     """
 
-    #aタグや全角スペースの削除、改行追加
+    # aタグや全角スペースの削除、改行追加
     SS_string = re.sub("<a.*?>|</a>|\u3000", " ", SS_string).replace("<br />", "<br>").replace("<br>", "\n")
 
-    #XMLの特殊文字対応、但しタグ以外の文字にのみ適用
+    # XMLの特殊文字対応、但しタグ以外の文字にのみ適用
     # " -> chr(34) -> &quot;
 
     # & -> chr(38) -> &amp;
@@ -75,12 +75,11 @@ def string_standardized(SS_string):
     # > -> chr(62) -> &gt;
     # ? -> chr(63) -> &#063;
     # ／ -> chr(65295) -> &#047;
-    dic = {34:"&quot;", 38:"&amp;", 39:"&apos;", 43:"&#043;", 47:"&#047;", 60:"&lt;", 62:"&gt;", 65295:"&#047;"}
+    dic = {34: "&quot;", 38: "&amp;", 39: "&apos;", 43: "&#043;", 47: "&#047;", 60: "&lt;", 62: "&gt;", 65295: "&#047;"}
     for i in dic:
         SS_string = SS_string.replace(chr(i), dic[i])
 
     return(SS_string)
-
 
 
 def rss_checker(RC_rss_path):
@@ -99,15 +98,15 @@ def rss_checker(RC_rss_path):
     """
     try:
         tree = ET.parse(RC_rss_path)
-        #print(tree)
+        # print(tree)
         root = tree.getroot()
-        #print(root)
-        #XPathでtitle数をカウントする
+        # print(root)
+        # XPathでtitle数をカウントする
         counter = len(root.findall("./*/*/title"))+1
-    except:
+    except BaseException:
         counter = 1
-        #（将来対応）
-        #movie.rssファイルが無いので、ファイルを生成する
+        # （将来対応）
+        # movie.rssファイルが無いので、ファイルを生成する
 
     return(str(counter).zfill(3))
 
@@ -135,7 +134,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
         file type
         time stamp
     """
-    #実際のダウンロード処理
+# 実際のダウンロード処理
 
     try:
         with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
@@ -143,30 +142,30 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
             video_title = info_dict.get("title", None)
             video_description = info_dict.get("description", None)
             ydl.download([YT_url])
-    except:
-        #エラーが出た際に継続処理をさせる
+    except ydl.DownloadError:
+        # エラーが出た際に継続処理をさせる
         YT_ydl_opts["continue"] = True
         for i in range(100):
             try:
                 with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
                     ydl.download([YT_url])
                 break
-            except:
+            except ydl.DownloadError:
                 time.sleep(60)
 
-    #ファイルの詳細情報を入手する
+# ファイルの詳細情報を入手する
     video_title = string_standardized(video_title)
     video_description = string_standardized(video_description)
 
 
-    #ダウンロードしたファイル名+拡張子を取得
-    #getctimeで最新作成時のファイルを得る
+# ダウンロードしたファイル名+拡張子を取得
+# getctimeで最新作成時のファイルを得る
     list_of_files = glob.glob(YT_down_dir+"podcast*")
     latest_file = max(list_of_files, key=os.path.getctime)
     file_size = os.path.getsize(latest_file)
-    #新しい拡張があれば追加する
-    file_type = {"mp4":"video/mp4", "mp3":"audio/mp3"}[latest_file[-3:]]
-    #登録する日時は現在のものとする
+# 新しい拡張があれば追加する
+    file_type = {"mp4": "video/mp4", "mp3": "audio/mp3"}[latest_file[-3:]]
+# 登録する日時は現在のものとする
     file_time = utils.formatdate(time.time())
 
     return(latest_file, video_title, video_description, file_size, file_type, file_time)
@@ -190,12 +189,12 @@ def rss_modify(RM_rss_path, RM_data):
     Returns
     ----------
     """
-    #rssを開く
+# rssを開く
     with codecs.open(RM_rss_path, "r", "utf-8") as f:
         line = f.readlines()
     count = 0
     for temp in line:
-        count = count +1
+        count = count + 1
 
         if '<itunes:category text="video"/>' in temp:
             line.insert(count+0, '      <item>\n')
@@ -213,7 +212,8 @@ def rss_modify(RM_rss_path, RM_data):
     with codecs.open(RM_rss_path, "w", "utf-8") as f:
         f.writelines(line)
 
-#進捗確認のための将来対応
+
+# 進捗確認のための将来対応
 class MyLogger(object):
     def debug(self, msg):
         pass
@@ -224,62 +224,62 @@ class MyLogger(object):
     def error(self, msg):
         pass
 
-#進捗確認のための将来対応
+
+# 進捗確認のための将来対応
 def my_hook(d):
     pass
-    #if d['status'] == 'finished':
+    # if d['status'] == 'finished':
     #    print('Done downloading, now converting ...')
 
+
 def main():
-    #PythonのCGIスクリプトから出力したHTMLの日本語文字化け防止
+    # PythonのCGIスクリプトから出力したHTMLの日本語文字化け防止
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-    #postからurlを取得する
+    # postからurlを取得する
     form = cgi.FieldStorage()
-    #オプション付きURLの場合に備えて、＆以降はカットする
+    # オプション付きURLの場合に備えて、＆以降はカットする
     url_long = form.getvalue("submit")
     url = url_long.split("&", 1)[0]
 
-    #youtube_dlのオプション設定をする
-    ydl_opts = {"quiet":True}
+    # youtube_dlのオプション設定をする
+    ydl_opts = {"quiet": True}
 
-    #ユーザ情報の入手
+    # ユーザ情報の入手
     with codecs.open("user_name.txt", "r", "utf-8") as f:
         line = f.readlines()
         for temp in line:
-            #コメントは除外する
+            # コメントは除外する
             if temp[:1] != "#":
-                #区切り文字を使って要素を分割する
+                # 区切り文字を使って要素を分割する
                 user_info = temp.split(":")
                 if re.split("/+", url)[1] == user_info[0]:
                     ydl_opts["username"] = user_info[1].rstrip("\n\r")
                     ydl_opts["password"] = user_info[2].rstrip("\n\r")
 
-
-    #出力ファイルを連番にするため、rssから現在のitem数をカウントする
+    # 出力ファイルを連番にするため、rssから現在のitem数をカウントする
     outtmpl = "podcast"+rss_checker("c:/apache/cgi-bin/podcast/movie.rss")+".%(ext)s"
-    #出力フォルダ
+    # 出力フォルダ
     down_dir = "c:/apache/cgi-bin/podcast/"
-    #出力ファイル名をオプション変数（辞書）に登録する
+# 出力ファイル名をオプション変数（辞書）に登録する
     ydl_opts["outtmpl"] = down_dir+outtmpl
 
-    #進捗確認のための将来対応
-    #ydl_opts["logger"] = MyLogger()
-    #ydl_opts["progress_hooks"] = [my_hook]
+# 進捗確認のための将来対応
+# ydl_opts["logger"] = MyLogger()
+# ydl_opts["progress_hooks"] = [my_hook]
 
-    #（将来対応）
-    #podcastフォルダ内にファイルが多数あれば、削除する
-    #check_file(folder_path, max_fail)
+# （将来対応）
+# podcastフォルダ内にファイルが多数あれば、削除する
+# check_file(folder_path, max_fail)
 
-    #対象のurlをダウンロードする
-    #ダウンロードするファイル名は、podcast000.mp4とする
-    #戻り値はファイル名、タイトル、詳細
+# 対象のurlをダウンロードする
+# ダウンロードするファイル名は、podcast000.mp4とする
+# 戻り値はファイル名、タイトル、詳細
     results = yt_download(url, ydl_opts, down_dir)
 
 
-    #rssに新しいファイルを追加する
+# rssに新しいファイルを追加する
     rss_modify("c:/apache/cgi-bin/podcast/movie.rss", results)
-
 
     print("Content-Type: text/html; charset=utf-8")
     print()
@@ -287,6 +287,7 @@ def main():
 
     return
 
-#実行のメイン
+# 実行のメイン
+
 
 main()

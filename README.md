@@ -11,8 +11,8 @@ function
 How to use
 1. start apache
 0. Enter the URL in the browser.  
-   ex1)loacalhost:8080 (If "Apache" is running on the same PC)  
-   ex2)192.168.1.10:8080(If "Apache" in runnnig on the another PC whchi is 192.168.1.10)  
+   ex1)loacalhost (If "Apache" is running on the same PC)  
+   ex2)192.168.1.100(If "Apache" in runnnig on the another PC whchi is 192.168.1.10)  
 0. Enter the URL you want to download and click "Get title".  
 0. If you can show download's title, click "download".
 0. Download complete, click "Return top page".
@@ -43,6 +43,6 @@ Python Library
   * io
   * xml.etree.ElementTree
   * glob
-  * os 
+  * os
   * time
   * email import utils
