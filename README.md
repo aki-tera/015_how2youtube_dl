@@ -10,9 +10,12 @@ function
 
 How to use
 1. start apache
+  - warning : you need that you amend line 208 and 209 on yt_download.py
+    - 208: http://***192.168.11.15***/podcast/ --> http://***your IP address***/podcast/
+    - 209: http://***192.168.11.15***/podcast/ --> http://***your IP address***/podcast/
 0. Enter the URL in the browser.  
    ex1)loacalhost (If "Apache" is running on the same PC)  
-   ex2)192.168.1.100(If "Apache" in runnnig on the another PC whchi is 192.168.1.10)  
+   ex2)192.168.11.15(If "Apache" in runnnig on the another PC whchi is 192.168.11.15)  
 0. Enter the URL you want to download and click "Get title".  
 0. If you can show download's title, click "download".
 0. Download complete, click "Return top page".
