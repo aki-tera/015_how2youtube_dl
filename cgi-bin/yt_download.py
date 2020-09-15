@@ -62,6 +62,7 @@ def string_standardized(SS_string):
     """
 
     # aタグや全角スペースの削除、改行追加
+    # 改行は一度、\nでまとめておく
     SS_string = re.sub("<a.*?>|</a>|\u3000", " ", SS_string).replace("<br />", "<br>").replace("<br>", "\n")
 
     # XMLの特殊文字対応、但しタグ以外の文字にのみ適用
@@ -75,6 +76,7 @@ def string_standardized(SS_string):
     # > -> chr(62) -> &gt;
     # ? -> chr(63) -> &#063;
     # スペース -> chr(12288) -> &#032;
+    # ・ -> chr(12539) -> &#x30fb;
     # ／ -> chr(65295) -> &#047;
     # ＋ -> chr(65291) -> &#043;
     dic = {32: "&#032;", 34: "&quot;", 38: "&amp;", 39: "&apos;", 43: "&#043;",
@@ -82,6 +84,10 @@ def string_standardized(SS_string):
            65295: "&#047;", 65291: "&#043;"}
     for i in dic:
         SS_string = SS_string.replace(chr(i), dic[i])
+
+    # 改行は<br />ただし、<と>は特殊文字に変換が必要
+    # 一度改行を/nでまとめているので、それを一括変更する
+    SS_string = SS_string.replace("\n", "&lt;br /&gt;")
 
     return(SS_string)
 
