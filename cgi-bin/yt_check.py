@@ -19,7 +19,7 @@ import sys
 import io
 
 cgitb.enable(display=0, logdir="../podcast/")
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 form = cgi.FieldStorage()
 
 # オプション付きURLの場合に備えて、＆以降はカットする
@@ -27,6 +27,8 @@ url_long = form.getfirst("url")
 url = url_long.split("&", 1)[0]
 
 # youtube_dlのオプション設定をする
+# youtubeの場合、ログインはクッキーが必要
+# ydl_opts = {"quiet": True, "cookiefile": "cookies.txt"}
 ydl_opts = {"quiet": True}
 
 # ユーザ情報の入手
@@ -46,17 +48,18 @@ with codecs.open("user_name.txt", "r", "utf-8") as f:
 # quietオプションをONにして表示をなくす（apacheサーバのエラーが無くなる？）
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     info_dict = ydl.extract_info(url, download=False)
-    video_title = info_dict.get('title', None)
+    video_title = info_dict.get("title", None)
 
-print('Content-type: text/html\nAccess-Control-Allow-Origin: *\n')
+print("Content-Type: text/html; charset=utf-8")
+print('\r\n\r\n')
 
 # ユーザが指定されている場合表示を追加する
 if ("username" in ydl_opts) is True:
     print('<p id="login_name">{}</p>'.format(ydl_opts["username"]))
 
 print('<p id="title_name">{}</p>'.format(video_title))
-print('<p><p>')
+print("<p><p>")
 print('<form action="/cgi-bin/yt_download.py" method="POST">')
 print('<button type="submit" id="get_youtube" name="submit" value="{}">Download</button>'.format(url))
-print('</form>')
+print("</form>")
 print('<div id="result2">\n</div>')

@@ -254,6 +254,8 @@ def main():
     url = url_long.split("&", 1)[0]
 
     # youtube_dlのオプション設定をする
+    # youtubeの場合、ログインはクッキーが必要
+    # ydl_opts = {"quiet": True, "cookiefile": "cookies.txt"}
     ydl_opts = {"quiet": True}
 
     # ユーザ情報の入手
@@ -293,7 +295,7 @@ def main():
     rss_modify("c:/apache/cgi-bin/podcast/movie.rss", results)
 
     print("Content-Type: text/html; charset=utf-8")
-    print()
+    print("\r\n\r\n")
     print(html_body)
 
     return

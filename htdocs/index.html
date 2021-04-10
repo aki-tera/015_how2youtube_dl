@@ -37,8 +37,6 @@
       $('#form_url').submit(function() {
 <!--Ajaxで送信するので、通常のフォーム送信はキャンセル-->
         event.preventDefault();
-<!--thisは現在動作している要素を示すが、なんのためか不明-->
-        var $form = $(this);
 <!--送信する内容-->
         $.ajax({
           url: '/cgi-bin/yt_check.py',
