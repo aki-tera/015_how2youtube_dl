@@ -1,0 +1,32 @@
+# アパッチのフォルダ
+bin
+cgi-bin/~
+error
+icons
+include
+lib
+logs
+manual
+modules
+
+# アパッチのファイル（最上層）
+ABOUT_APACHE.txt
+CHANGES.txt
+INSTALL.txt
+LICENSE.txt
+NOTICE.txt
+OPENSSL-NEWS.txt
+OPENSSL-README.txt
+README.txt
+
+# 設定ファイル
+cookies.txt
+movie.rss
+user_name.txt
+
+# その他
+movie.rss
+user_name.txt
+*.mp*
+test*.*
+
