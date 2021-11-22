@@ -19,6 +19,9 @@ OPENSSL-NEWS.txt
 OPENSSL-README.txt
 README.txt
 
+# フォルダ関連
+cgi-bin\podcast
+
 # 設定ファイル
 cookies.txt
 movie.rss
