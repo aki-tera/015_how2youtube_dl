@@ -112,7 +112,7 @@ def rss_checker(RC_rss_path):
         root = tree.getroot()
         # print(root)
         # XPathでtitle数をカウントする
-        counter = len(root.findall("./*/*/title"))+1
+        counter = len(root.findall("./*/*/title")) + 1
     except BaseException:
         counter = 1
         # （将来対応）
@@ -170,7 +170,7 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
 
 # ダウンロードしたファイル名+拡張子を取得
 # getctimeで最新作成時のファイルを得る
-    list_of_files = glob.glob(YT_down_dir+"podcast*")
+    list_of_files = glob.glob(YT_down_dir + "podcast*")
     latest_file = max(list_of_files, key=os.path.getctime)
     file_size = os.path.getsize(latest_file)
 # 新しい拡張があれば追加する
@@ -208,13 +208,14 @@ def rss_modify(RM_rss_path, RM_data):
         count = count + 1
 
         if '<itunes:category text="video"/>' in temp:
-            line.insert(count+0, '      <item>\n')
-            line.insert(count+1, '        <title>'+RM_data[1]+'</title>\n')
-            line.insert(count+2, '        <description>'+RM_data[2]+'</description>\n')
-            line.insert(count+3, '        <enclosure url="http://192.168.11.15/podcast/'+RM_data[0][26:]+'" length="'+str(RM_data[3])+'" type="'+RM_data[4]+'"/>\n')
-            line.insert(count+4, '        <guid isPermaLink="true">http://192.168.11.15/podcast/'+RM_data[0][26:]+'</guid>\n')
-            line.insert(count+5, '        <pubDate>'+RM_data[5]+'</pubDate>\n')
-            line.insert(count+6, '      </item>\n')
+            line.insert(count + 0, '      <item>\n')
+            line.insert(count + 1, '        <title>' + RM_data[1] + '</title>\n')
+            line.insert(count + 2, '        <description>' + RM_data[2] + '</description>\n')
+            line.insert(count + 3, '        <enclosure url="http://192.168.11.15/podcast/' + RM_data[0][26:] + '" length="' +
+                        str(RM_data[3]) + '" type="' + RM_data[4] + '"/>\n')
+            line.insert(count + 4, '        <guid isPermaLink="true">http://192.168.11.15/podcast/' + RM_data[0][26:] + '</guid>\n')
+            line.insert(count + 5, '        <pubDate>' + RM_data[5] + '</pubDate>\n')
+            line.insert(count + 6, '      </item>\n')
             break
         else:
             continue
@@ -236,11 +237,11 @@ class MyLogger(object):
         pass
 
 
-# 進捗確認のための将来対応
+# 進捗確認のためのプログレスバー用カウンタ
 def my_hook(d):
-    pass
-    # if d['status'] == 'finished':
-    #    print('Done downloading, now converting ...')
+    count = f'{int(d["downloaded_bytes"]/d["total_bytes"]*100)}'
+    with open("../htdocs/counter.txt", mode="w")as f:
+        f.write(count)
 
 
 def main():
@@ -271,32 +272,44 @@ def main():
                     ydl_opts["password"] = user_info[2].rstrip("\n\r")
 
     # 出力ファイルを連番にするため、rssから現在のitem数をカウントする
-    outtmpl = "podcast"+rss_checker("c:/apache/cgi-bin/podcast/movie.rss")+".%(ext)s"
+    outtmpl = "podcast" + rss_checker("c:/apache/cgi-bin/podcast/movie.rss") + ".%(ext)s"
     # 出力フォルダ
     down_dir = "c:/apache/cgi-bin/podcast/"
-# 出力ファイル名をオプション変数（辞書）に登録する
-    ydl_opts["outtmpl"] = down_dir+outtmpl
+    # 出力ファイル名をオプション変数（辞書）に登録する
+    ydl_opts["outtmpl"] = down_dir + outtmpl
 
-# 進捗確認のための将来対応
-# ydl_opts["logger"] = MyLogger()
-# ydl_opts["progress_hooks"] = [my_hook]
+    # 進捗確認のための将来対応
+    # ydl_opts["logger"] = MyLogger()
 
-# （将来対応）
-# podcastフォルダ内にファイルが多数あれば、削除する
-# check_file(folder_path, max_fail)
+    # 進捗確認のため
+    # youtube_dlのオプション設定
+    ydl_opts["progress_hooks"] = [my_hook]
+    # カウンター用のファイルを0にセット
+    with open("../htdocs/counter.txt", mode="w")as f:
+        f.write("0")
 
-# 対象のurlをダウンロードする
-# ダウンロードするファイル名は、podcast000.mp4とする
-# 戻り値はファイル名、タイトル、詳細
+    # （将来対応）
+    # podcastフォルダ内にファイルが多数あれば、削除する
+    # check_file(folder_path, max_fail)
+
+    # 対象のurlをダウンロードする
+    # ダウンロードするファイル名は、podcast000.mp4とする
+    # 戻り値はファイル名、タイトル、詳細
     results = yt_download(url, ydl_opts, down_dir)
 
-
-# rssに新しいファイルを追加する
+    # rssに新しいファイルを追加する
     rss_modify("c:/apache/cgi-bin/podcast/movie.rss", results)
+
+    # jQueryの処理を確実に終わらせるため、5秒の待機を追加
+    time.sleep(5)
 
     print("Content-Type: text/html; charset=utf-8")
     print("\r\n\r\n")
     print(html_body)
+
+    # カウンターをリセットしておく
+    with open("../htdocs/counter.txt", mode="w")as f:
+        f.write("0")
 
     return
 
