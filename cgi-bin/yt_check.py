@@ -28,8 +28,8 @@ url = url_long.split("&", 1)[0]
 
 # youtube_dlのオプション設定をする
 # youtubeの場合、ログインはクッキーが必要
-# ydl_opts = {"quiet": True, "cookiefile": "cookies.txt"}
-ydl_opts = {"quiet": True}
+ydl_opts = {"quiet": True, "cookiefile": "cookies.txt"}
+# ydl_opts = {"quiet": True}
 
 # ユーザ情報の入手
 with codecs.open("user_name.txt", "r", "utf-8") as f:
