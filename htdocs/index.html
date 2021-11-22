@@ -8,6 +8,10 @@
   </head>
 
   <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <form id="form_url">
       <div>
         <h1>Youtube URL</h1>
@@ -29,15 +33,16 @@
 
 <!--jqueryの開始-->
 <!--jqueryのダウンロード-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-<!--htmlファイルの読み込み後に以下を実行すること-->
+
+    /*htmlファイルの読み込み後に以下を実行すること*/
+
     $(document).ready(function() {
-<!--formタグを対象として処理をする-->
+      /*formタグを対象として処理をする*/
       $('#form_url').submit(function() {
-<!--Ajaxで送信するので、通常のフォーム送信はキャンセル-->
+        /*Ajaxで送信するので、通常のフォーム送信はキャンセル*/
         event.preventDefault();
-<!--送信する内容-->
+        /*送信する内容*/
         $.ajax({
           url: '/cgi-bin/yt_check.py',
           type: 'post',
@@ -46,7 +51,7 @@
             url: $('#input_url').val(),
             },
         })
-<!--非同期通信のまま返り値をもらう-->
+        /*非同期通信のまま返り値をもらう*/
         .done(function(response) {
           $('#result1').html(response);
         })

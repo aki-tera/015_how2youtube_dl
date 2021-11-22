@@ -50,6 +50,10 @@ with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     info_dict = ydl.extract_info(url, download=False)
     video_title = info_dict.get("title", None)
 
+# カウンターをリセットしておく
+with open("../htdocs/counter.txt", mode="w")as f:
+    f.write("0")
+
 print("Content-Type: text/html; charset=utf-8")
 print('\r\n\r\n')
 
@@ -57,6 +61,16 @@ print('\r\n\r\n')
 if ("username" in ydl_opts) is True:
     print('<p id="login_name">{}</p>'.format(ydl_opts["username"]))
 
+# プログレスバーを設置する
+
+
+print('<script type="text/javascript", src="progress.js"></script>')
+print('<div style="background-color:lightblue; padding:20px 20px 10px;">')
+print('<div id="progressBar"></div>')
+print('<div id="progressNumber" style="bottom:10px;"></div>')
+print('</div>')
+
+# ダウンロードの実行ボタン
 print('<p id="title_name">{}</p>'.format(video_title))
 print("<p><p>")
 print('<form action="/cgi-bin/yt_download.py" method="POST">')
