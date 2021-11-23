@@ -116,7 +116,7 @@ def rss_checker(RC_rss_path):
     except BaseException:
         counter = 1
         # （将来対応）
-        # movie.rssファイルが無いので、ファイルを生成する
+        # podcast.rssファイルが無いので、ファイルを生成する
 
     return(str(counter).zfill(3))
 
@@ -272,7 +272,7 @@ def main():
                     ydl_opts["password"] = user_info[2].rstrip("\n\r")
 
     # 出力ファイルを連番にするため、rssから現在のitem数をカウントする
-    outtmpl = "podcast" + rss_checker("c:/apache/cgi-bin/podcast/movie.rss") + ".%(ext)s"
+    outtmpl = "podcast" + rss_checker("c:/apache/cgi-bin/podcast/podcast.rss") + ".%(ext)s"
     # 出力フォルダ
     down_dir = "c:/apache/cgi-bin/podcast/"
     # 出力ファイル名をオプション変数（辞書）に登録する
@@ -298,7 +298,7 @@ def main():
     results = yt_download(url, ydl_opts, down_dir)
 
     # rssに新しいファイルを追加する
-    rss_modify("c:/apache/cgi-bin/podcast/movie.rss", results)
+    rss_modify("c:/apache/cgi-bin/podcast/podcast.rss", results)
 
     # jQueryの処理を確実に終わらせるため、5秒の待機を追加
     time.sleep(5)

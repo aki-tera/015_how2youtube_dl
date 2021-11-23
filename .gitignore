@@ -25,6 +25,7 @@ cgi-bin\podcast
 # 設定ファイル
 cookies.txt
 movie.rss
+podcast.rss
 user_name.txt
 
 
