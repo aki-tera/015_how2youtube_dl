@@ -31,7 +31,7 @@ user_name.txt
 
 # その他
 cgi-bin\podcast\movie.rss
-cgi-bin\cookies.txt
-cgi-bin\user_name.txt
+cookies.txt
+user_name.txt
 *.mp*
 test*.*
