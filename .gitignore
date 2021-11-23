@@ -36,3 +36,4 @@ test*.*
 cgi-bin/podcast/podcast.rss
 cgi-bin/user_name.txt
 cgi-bin/cookies.txt
+cgi-bin/setting_file.json
