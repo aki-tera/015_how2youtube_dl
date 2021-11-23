@@ -27,7 +27,7 @@ def create_rss_file(ip):
                  '</rss>\n')
 
     # rssファイルの作成
-    with open("cgi-bin/podcast/test_podcast.rss", mode="w", encoding="utf-8")as f:
+    with open("cgi-bin/podcast/podcast.rss", mode="w", encoding="utf-8")as f:
         f.write(html_body)
 
 
