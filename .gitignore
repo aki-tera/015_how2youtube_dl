@@ -23,15 +23,12 @@ README.txt
 cgi-bin\podcast
 
 # 設定ファイル
-cookies.txt
-movie.rss
-podcast.rss
-user_name.txt
+cgi-bin\podcast\podcast.rss
+cgi-bin\cookies.txt
+cgi-bin\user_name.txt
 
 
 # その他
-cgi-bin\podcast\movie.rss
-cookies.txt
-user_name.txt
+
 *.mp*
 test*.*
