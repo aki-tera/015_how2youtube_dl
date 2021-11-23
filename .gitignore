@@ -26,9 +26,13 @@ cgi-bin\podcast
 cgi-bin\podcast\podcast.rss
 cgi-bin\cookies.txt
 cgi-bin\user_name.txt
+htdocs\counter.txt
 
 
 # その他
 
 *.mp*
 test*.*
+cgi-bin/podcast/podcast.rss
+cgi-bin/user_name.txt
+cgi-bin/cookies.txt
