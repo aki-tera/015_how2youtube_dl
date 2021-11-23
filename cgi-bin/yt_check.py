@@ -1,4 +1,4 @@
-#!C:\Python\Python36\python.exe
+#!C:\Python\Python38\python.exe
 # -*- coding:utf-8 -*-
 
 import youtube_dl

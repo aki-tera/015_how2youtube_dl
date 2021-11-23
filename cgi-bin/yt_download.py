@@ -1,4 +1,4 @@
-#!C:\Python\Python36\python.exe
+#!C:\Python\Python38\python.exe
 # -*- coding:utf-8 -*-
 
 import cgi
@@ -29,6 +29,7 @@ from email import utils
 import codecs
 
 import re
+import json
 
 
 html_body = """
@@ -47,6 +48,10 @@ html_body = """
 </body>
 </html>
 """
+
+# 設定ファイルの読み込み
+with open("setting_file.json", mode="r")as f:
+    setting_dict = json.load(f)
 
 
 def string_standardized(SS_string):
@@ -211,9 +216,9 @@ def rss_modify(RM_rss_path, RM_data):
             line.insert(count + 0, '      <item>\n')
             line.insert(count + 1, '        <title>' + RM_data[1] + '</title>\n')
             line.insert(count + 2, '        <description>' + RM_data[2] + '</description>\n')
-            line.insert(count + 3, '        <enclosure url="http://192.168.11.15/podcast/' + RM_data[0][26:] + '" length="' +
+            line.insert(count + 3, f"""        <enclosure url="{setting_dict['podcast_link']}""" + RM_data[0][26:] + '" length="' +
                         str(RM_data[3]) + '" type="' + RM_data[4] + '"/>\n')
-            line.insert(count + 4, '        <guid isPermaLink="true">http://192.168.11.15/podcast/' + RM_data[0][26:] + '</guid>\n')
+            line.insert(count + 4, f"""        <guid isPermaLink="true">{setting_dict['podcast_link']}""" + RM_data[0][26:] + '</guid>\n')
             line.insert(count + 5, '        <pubDate>' + RM_data[5] + '</pubDate>\n')
             line.insert(count + 6, '      </item>\n')
             break
@@ -272,9 +277,9 @@ def main():
                     ydl_opts["password"] = user_info[2].rstrip("\n\r")
 
     # 出力ファイルを連番にするため、rssから現在のitem数をカウントする
-    outtmpl = "podcast" + rss_checker("c:/apache/cgi-bin/podcast/podcast.rss") + ".%(ext)s"
+    outtmpl = "podcast" + rss_checker(f'{setting_dict["podcast_path"]}podcast.rss') + ".%(ext)s"
     # 出力フォルダ
-    down_dir = "c:/apache/cgi-bin/podcast/"
+    down_dir = setting_dict["podcast_path"]
     # 出力ファイル名をオプション変数（辞書）に登録する
     ydl_opts["outtmpl"] = down_dir + outtmpl
 
@@ -298,7 +303,7 @@ def main():
     results = yt_download(url, ydl_opts, down_dir)
 
     # rssに新しいファイルを追加する
-    rss_modify("c:/apache/cgi-bin/podcast/podcast.rss", results)
+    rss_modify(f'{setting_dict["podcast_path"]}podcast.rss', results)
 
     # jQueryの処理を確実に終わらせるため、5秒の待機を追加
     time.sleep(5)
