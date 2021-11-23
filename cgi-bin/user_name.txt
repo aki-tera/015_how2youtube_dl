@@ -1,0 +1,4 @@
+#You can switch login name and password for each video services.
+#Enter the login name and password for each services according to the following:
+#www.example1.com:username1:password1
+#www.example2.com:username2:password2
