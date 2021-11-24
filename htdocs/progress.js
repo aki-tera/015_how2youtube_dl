@@ -9,7 +9,7 @@ $(function () {
                 $("#progressNumber").text($("#progressBar").progressbar("value") + "%");
             },
             complete: function () {
-                $("#progressNumber").text($("#progressBar").progressbar("value") + "%　完了");
+                $("#progressNumber").text($("#progressBar").progressbar("value") + "%　done");
             }
         });
         var id = setInterval(function () {
