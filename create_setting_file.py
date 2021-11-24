@@ -19,7 +19,7 @@ def create_rss_file(ip):
     html_body = ('<?xml version="1.0" encoding="utf-8"?>\n'
                  '<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">\n'
                  '  <channel>\n'
-                 '    <title>我が家のPodcast</title>\n'
+                 '    <title>My Podcast</title>\n'
                  '    <itunes:owner/>\n' +
                  f'    <itunes:image href="http://{ip}/art-work/001.png"/>\n' +
                  '    <itunes:category text="video"/>\n'
