@@ -1,15 +1,20 @@
 # 015_youtube_dl2podcast
 ![](https://img.shields.io/badge/type-python3-brightgreen)  ![](https://img.shields.io/badge/windows%20build-passing-brightgreen) ![](https://img.shields.io/badge/license-MIT-brightgreen)   
-![](https://img.shields.io/badge/libraly-Apache-red)  ![](https://img.shields.io/badge/libraly-youtube_dl-blue)  
+![](https://img.shields.io/badge/Server-Apache-red) ![](https://img.shields.io/badge/SmartPhone-iPhone-red)  
+![](https://img.shields.io/badge/libraly-youtube_dl-blue)  
 
 ## DEMO
-### You can watch the videos which get by youtube_dl in Podcast.   
-<img src="https://user-images.githubusercontent.com/44888139/143227771-b4f5ba5f-e7ed-4bde-8179-1519d1185494.png" height="400px"> <img src="https://user-images.githubusercontent.com/44888139/143228182-7f987255-8950-4836-b84d-940189a73d5c.png" height="400px">  <img src="https://user-images.githubusercontent.com/44888139/143227894-ce764aa1-0bbb-4dc8-a9a7-00dba2056ff9.png" height="400px"> 
+### This is a program that can create RSS feeds of videos retrieved by youtube_dl. 
+<img src="https://user-images.githubusercontent.com/44888139/143227771-b4f5ba5f-e7ed-4bde-8179-1519d1185494.png" height="400px"> <img src="https://user-images.githubusercontent.com/44888139/143228182-7f987255-8950-4836-b84d-940189a73d5c.png" height="400px">  <img src="https://user-images.githubusercontent.com/44888139/143227894-ce764aa1-0bbb-4dc8-a9a7-00dba2056ff9.png" height="400px">  
+
+### You can watch the videos registered in RSS with the podcast application on your smartphone.  
+<img src="https://user-images.githubusercontent.com/44888139/143238309-2bbc38ef-bfcb-4372-a593-83739317b507.png" height="400px"> 
 
 ## Features
-
+If you register the url in the podcast app, you can watch the videos you get from youtube_dl on your phone.
 
 ### specification
+- 
 
 ## Requirement 
 Python 3
