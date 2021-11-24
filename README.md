@@ -4,7 +4,7 @@
 
 ## DEMO
 ### You can watch the videos which get by youtube_dl in Podcast.   
-
+<img src="https://user-images.githubusercontent.com/44888139/143227771-b4f5ba5f-e7ed-4bde-8179-1519d1185494.png" height="400px"> <img src="https://user-images.githubusercontent.com/44888139/143228182-7f987255-8950-4836-b84d-940189a73d5c.png" height="400px">  <img src="https://user-images.githubusercontent.com/44888139/143227894-ce764aa1-0bbb-4dc8-a9a7-00dba2056ff9.png" height="400px"> 
 
 ## Features
 
@@ -22,14 +22,21 @@ Python 3
      - Apple Podcast App
 
 Python Library
-  - cv2(OpenCV)
-  - pathlib
-  - queue
-  - threading
+  - youtube_dl
+  - cgi, cgitb
+  - codecs
+  - re
+  - sys, io, os
+  - xml.etree.ElementTree
+  - glob
+  - email import utils
   - json
+
 
 Podcast software
   - Apple Podcast App
+
+
 
 
 ***
