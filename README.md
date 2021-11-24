@@ -1,5 +1,36 @@
-# 015_apache_for_win
-Create iPhone podcast RSS feed
+# 015_youtube_dl2podcast
+![](https://img.shields.io/badge/type-python3-brightgreen)  ![](https://img.shields.io/badge/windows%20build-passing-brightgreen) ![](https://img.shields.io/badge/license-MIT-brightgreen)   
+![](https://img.shields.io/badge/libraly-Apache-red)  ![](https://img.shields.io/badge/libraly-youtube_dl-blue)  
+
+## DEMO
+### You can watch the videos which get by youtube_dl in Podcast.   
+
+
+## Features
+
+
+### specification
+
+## Requirement 
+Python 3
+ - I ran this program with the following execution environment.
+   - Windows 10
+     - Python 3.9
+     - Apache HTTP Server 2.4
+   - iPhone11
+     - ios 14.8
+     - Apple Podcast App
+
+Python Library
+  - cv2(OpenCV)
+  - pathlib
+  - queue
+  - threading
+  - json
+
+Podcast software
+  - Apple Podcast App
+
 
 ***
 This program can download from Video(can be downloaded  by youtube_dl) by your browser and can create iPhone podcast RSS feed.
