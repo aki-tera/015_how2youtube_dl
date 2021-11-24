@@ -41,7 +41,8 @@ html_body = """
 <link rel='stylesheet' href='/CSS/style_cgi.css'>
 </head>
 <body>
-<h1>Download complete</h1>
+<h1>Complete</h1>
+<h4>Download and Write RSS</h4>
 <p>
 <p>
 <input type='button' id='return_page' value='Return Top Page' onClick='document.location="../index.html";'>

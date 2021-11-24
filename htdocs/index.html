@@ -14,9 +14,9 @@
 
     <form id="form_url">
       <div>
-        <h1>Youtube URL</h1>
-        <p>リンクを入力してボタンを押す</p>
-        <p>タイトルが問題無ければ、ダウンロードボタンを押す</p>
+        <h1>URL to youtube_dl</h1>
+        <p>Enter the URL and press the button [Get title].<br>リンクを入力してボタンを押す</p>
+        <p>If the title is OK, click the button [START].<br>タイトルが問題無ければ、ダウンロードボタンを押す</p>
         <p>
           <input type="url" id="input_url" value="" placeholder="https://">
         </p>
@@ -56,7 +56,7 @@
           $('#result1').html(response);
         })
         .fail(function() {
-          $('#result1').html('タイトル取得できませんでした');
+          $('#result1').html('Could not get title.');
         });
       });
     });
