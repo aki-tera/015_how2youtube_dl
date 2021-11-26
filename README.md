@@ -5,10 +5,10 @@
 
 ## DEMO
 ### This is a program that can create RSS feeds of videos retrieved by youtube_dl. 
-<img src="https://user-images.githubusercontent.com/44888139/143341829-57dc7079-a798-492c-a76f-96ef49b6f089.png" height="400px"> <img src="https://user-images.githubusercontent.com/44888139/143342138-591f85c7-9bf1-4447-9a37-56f53cb3c286.png" height="400px">  <img src="https://user-images.githubusercontent.com/44888139/143227894-ce764aa1-0bbb-4dc8-a9a7-00dba2056ff9.png" height="400px">  
+<img src="https://user-images.githubusercontent.com/44888139/143341829-57dc7079-a798-492c-a76f-96ef49b6f089.png" width="300px"> <img src="https://user-images.githubusercontent.com/44888139/143342138-591f85c7-9bf1-4447-9a37-56f53cb3c286.png" width="300px">  <img src="https://user-images.githubusercontent.com/44888139/143227894-ce764aa1-0bbb-4dc8-a9a7-00dba2056ff9.png" width="300px">  
 
 ### You can watch the videos registered in RSS with the podcast application on your smartphone.  
-<img src="https://user-images.githubusercontent.com/44888139/143238309-2bbc38ef-bfcb-4372-a593-83739317b507.png" height="400px"> 
+<img src="https://user-images.githubusercontent.com/44888139/143238309-2bbc38ef-bfcb-4372-a593-83739317b507.png" width="300px"> 
 
 ## Features
 If you register the url in the podcast app, you can watch the videos you get from youtube_dl on your phone.
