@@ -64,6 +64,9 @@ Podcast software
 1. See the operation in the picture above
 1. Finally update your Podcast App.
 
+### How to change the podcast cover
+
+
 ## License
 This program is under MIT license.  
 
