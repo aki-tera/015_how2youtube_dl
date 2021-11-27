@@ -35,7 +35,10 @@ Python & HTTP Server
      - Apple Podcast App
 
 Python Library
+- the external package
   - youtube_dl
+  - pyperclip
+- the standard library
   - cgi, cgitb
   - codecs
   - re
