@@ -20,9 +20,15 @@
         <p>
           <input type="url" id="input_url" value="" placeholder="https://">
         </p>
+        <p>
+          <input type="radio" name="q1" value="unused" checked> unused
+          <input type="radio" name="q1" value="cookie"> cookie
+          <input type="radio" name="q1" value="password"> password
+        </p>
       </div>
       <p>
         <button type="submit" id="get_title">Get TITLE</button>
+      </p>
     </form>
     <div id="result1">
     </div>
@@ -49,6 +55,7 @@
           dataType: 'text',
           data: {
             url: $('#input_url').val(),
+            radio: $('input:radio[name="q1"]:checked').val(),
             },
         })
         /*非同期通信のまま返り値をもらう*/
