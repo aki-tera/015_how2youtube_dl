@@ -64,6 +64,17 @@ Podcast software
 1. See the operation in the picture above
 1. Finally update your Podcast App.
 
+## Others
+### How to change the your podcast cover
+If you want to change the podcast cover, please overwrite "cgi-bin\art-work\001.png".  
+Apple recommends the following, but I think 400px x 400px is also possible.  
+(https://podcasters.apple.com/support/896-artwork-requirements)  
+- jpeg or png
+- Square
+- Size
+  - Maximum pixel: 3000px x 3000px
+  - Minimum pixel: 1400px x 1400px
+
 ## License
 This program is under MIT license.  
 
@@ -101,6 +112,16 @@ Python & HTTP Server
 1. ブラウザでlocalhostを開きます。
 1. 上記の絵を見て操作します。
 1. Podcast Appを更新すると、登録されていることが分かります。
+
+## その他
+### ポッドキャストの画像変更に関して
+このファイル"cgi-bin\art-work\001.png"を上書きして下さい。  
+Appleは以下の内容を推奨していますが、画素サイズは400px x 400pxでも大丈夫です。 
+- jpeg or png
+- 正方形
+- サイズ
+  - 最大画素: 3000px x 3000px
+  - 最小画素: 1400px x 1400px
 
 ## ライセンス
 本プログラムは、MITライセンスです。
