@@ -22,30 +22,39 @@ cgitb.enable(display=0, logdir="../podcast/")
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 form = cgi.FieldStorage()
 
+# POSTリクエスト：URL
 # オプション付きURLの場合に備えて、＆以降はカットする
 url_long = form.getfirst("url")
 url = url_long.split("&", 1)[0]
 
-# youtube_dlのオプション設定をする
-# youtubeの場合、ログインはクッキーが必要
-ydl_opts = {"quiet": True, "cookiefile": "cookies.txt"}
-# ydl_opts = {"quiet": True}
+# POSTリクエスト：ログインオプション
+select_option = form.getfirst("radio")
 
-# ユーザ情報の入手
-with codecs.open("user_name.txt", "r", "utf-8") as f:
-    line = f.readlines()
-    for temp in line:
-        # コメントは除外する
-        if temp[:1] != "#":
-            # 区切り文字を使って要素を分割する
-            user_info = temp.split(":")
-            if re.split("/+", url)[1] == user_info[0]:
-                ydl_opts["username"] = user_info[1].rstrip("\n\r")
-                ydl_opts["password"] = user_info[2].rstrip("\n\r")
+
+# 表示しないオプション設定
+ydl_opts = {"quiet": True}
+
+
+# ログインが必要な場合の処理
+if select_option == "cookie":
+    # cookieでログインする場合
+    ydl_opts["cookiefile"] = "cookies.txt"
+
+elif select_option == "password":
+    # ユーザ名とパスワードでログインする場合
+    with codecs.open("user_name.txt", "r", "utf-8") as f:
+        line = f.readlines()
+        for temp in line:
+            # コメントは除外する
+            if temp[:1] != "#":
+                # 区切り文字を使って要素を分割する
+                user_info = temp.split(":")
+                if re.split("/+", url)[1] == user_info[0]:
+                    ydl_opts["username"] = user_info[1].rstrip("\n\r")
+                    ydl_opts["password"] = user_info[2].rstrip("\n\r")
 
 
 # タイトルチェック
-# quietオプションをONにして表示をなくす（apacheサーバのエラーが無くなる？）
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     info_dict = ydl.extract_info(url, download=False)
     video_title = info_dict.get("title", None)
