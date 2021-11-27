@@ -43,6 +43,23 @@ def create_json_file(dict):
         json.dump(dict, f)
 
 
+def create_user_name_file():
+    # ファイルのパス
+    file_path = "cgi-bin/user_name.txt"
+    # ファイルの内容
+    file_body = ("#You can switch login name and password for each video services.\n"
+                 "#Enter the login name and password for each services according to the following:\n"
+                 "#www.example1.com:username1:password1\n"
+                 "#www.example2.com:username2:password2\n")
+
+    # ファイル作成
+    if not os.path.isfile(file_path):
+        with open(file_path, mode="w", encoding="utf-8")as f:
+            f.write(file_body)
+    else:
+        print("Don't create user_name.txt, because it already exists.")
+
+
 def main():
     # まずはIPアドレスを取得する
     current_ip = get_current_ip()
@@ -58,17 +75,18 @@ def main():
     print(podcast_file_path)
     pyperclip.copy(podcast_file_path)
 
-
     # rssファイルを作成する
     create_rss_file(current_ip)
 
     # youtube_dlのダウンロードフォルダ設定
     podcast_path = os.getcwd().replace("\\", "/") + "/cgi-bin/podcast/"
-   
 
     # 設定用のjsonファイルを作る
     setting_value = {"podcast_path": podcast_path, "podcast_link": podcast_link}
     create_json_file(setting_value)
+
+    # user_name.txtを作成する
+    create_user_name_file()
 
 
 if __name__ == "__main__":
