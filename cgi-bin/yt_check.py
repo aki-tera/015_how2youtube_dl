@@ -38,7 +38,7 @@ ydl_opts = {"quiet": True}
 # ログインが必要な場合の処理
 if select_option == "cookie":
     # cookieでログインする場合
-    ydl_opts = {"cookiefile": "cookies.txt"}
+    ydl_opts["cookiefile"] = "cookies.txt"
 
 elif select_option == "password":
     # ユーザ名とパスワードでログインする場合
