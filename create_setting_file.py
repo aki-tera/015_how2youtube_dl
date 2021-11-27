@@ -1,6 +1,7 @@
 import socket
 import os
 import json
+import pyperclip
 
 
 def get_current_ip():
@@ -13,8 +14,10 @@ def get_current_ip():
 
 
 def create_rss_file(ip):
+    folder_path = "cgi-bin/podcast"
+    file_path = folder_path + "/podcast.rss"
     # podcastフォルダ作成
-    os.makedirs("cgi-bin/podcast", exist_ok=True)
+    os.makedirs(folder_path, exist_ok=True)
 
     html_body = ('<?xml version="1.0" encoding="utf-8"?>\n'
                  '<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">\n'
@@ -27,8 +30,11 @@ def create_rss_file(ip):
                  '</rss>\n')
 
     # rssファイルの作成
-    with open("cgi-bin/podcast/podcast.rss", mode="w", encoding="utf-8")as f:
-        f.write(html_body)
+    if not os.path.isfile(file_path):
+        with open(file_path, mode="w", encoding="utf-8")as f:
+            f.write(html_body)
+    else:
+        print("Don't create podcast.rss, because it already exists.")
 
 
 def create_json_file(dict):
@@ -41,24 +47,28 @@ def main():
     # まずはIPアドレスを取得する
     current_ip = get_current_ip()
 
-    # 現在のipアドレスを表示する
+    # rss用ダウンロードリンク
+    podcast_link = f"http://{current_ip}/podcast/"
+
+    # 登録するURLを表示する
+    podcast_file_path = podcast_link + "podcast.rss"
+
+    # 登録するURLの表示とクリップボードへのコピー
     print("Your URL of podcast is")
-    print(f"http://{current_ip}/podcast/podcast.rss")
+    print(podcast_file_path)
+    pyperclip.copy(podcast_file_path)
+
 
     # rssファイルを作成する
     create_rss_file(current_ip)
-    print("create podcast.rss")
 
     # youtube_dlのダウンロードフォルダ設定
     podcast_path = os.getcwd().replace("\\", "/") + "/cgi-bin/podcast/"
-
-    # rss用ダウンロードリンク
-    podcast_link = f"http://{current_ip}/podcast/"
+   
 
     # 設定用のjsonファイルを作る
     setting_value = {"podcast_path": podcast_path, "podcast_link": podcast_link}
     create_json_file(setting_value)
-    print("create setting_file.json")
 
 
 if __name__ == "__main__":
