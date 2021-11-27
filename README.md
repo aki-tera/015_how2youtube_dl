@@ -64,8 +64,16 @@ Podcast software
 1. See the operation in the picture above
 1. Finally update your Podcast App.
 
-### How to change the podcast cover
-
+## Others
+### How to change the your podcast cover
+If you want to change the podcast cover, please overwrite "cgi-bin\art-work\001.png".  
+Apple recommends the following, but I think 400px x 400px is also possible.  
+(https://podcasters.apple.com/support/896-artwork-requirements)  
+- jpeg or png
+- Square
+- Size
+  - Maximum pixel: 3000px x 3000px
+  - Minimum pixel: 1400px x 1400px
 
 ## License
 This program is under MIT license.  
