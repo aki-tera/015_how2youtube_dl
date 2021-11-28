@@ -259,7 +259,7 @@ def main():
 
     # POSTリクエスト：URL
     # オプション付きURLの場合に備えて、＆以降はカットする
-    url_long = form.getfirst("url")
+    url_long = form.getfirst("submit")
     url = url_long.split("&", 1)[0]
 
     # POSTリクエスト：ログインオプション
