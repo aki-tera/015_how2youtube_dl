@@ -261,9 +261,6 @@ def main():
     post_data = form.getfirst("submit")
     url, select_option = post_data.split(",")
 
-    # POSTリクエスト：ログインオプション
-    select_option = form.getfirst("radio")
-
     # 表示しないオプション設定
     ydl_opts = {"quiet": True}
 
