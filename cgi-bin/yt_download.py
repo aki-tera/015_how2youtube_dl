@@ -257,13 +257,9 @@ def main():
     # postからurlを取得する
     form = cgi.FieldStorage()
 
-    # POSTリクエスト：URL
-    # オプション付きURLの場合に備えて、＆以降はカットする
-    url_long = form.getfirst("url")
-    url = url_long.split("&", 1)[0]
-
-    # POSTリクエスト：ログインオプション
-    select_option = form.getfirst("radio")
+    # POSTリクエスト：submit
+    post_data = form.getfirst("submit")
+    url, select_option = post_data.split(",")
 
     # 表示しないオプション設定
     ydl_opts = {"quiet": True}
