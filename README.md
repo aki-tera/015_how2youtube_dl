@@ -15,7 +15,7 @@ If you register the url in the podcast app, you can watch the videos you get fro
 
 ### specification
 - The supported videos are what youtube_dl can go.
-- Login support
+- If you need to log in, you can do in the following two ways
   - You can be handled by setting usernames and login passwords for each services.
   - If the above is not possible, you can use cookie.txt.
 - Assuming a home LAN
