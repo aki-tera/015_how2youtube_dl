@@ -70,10 +70,9 @@ def main():
     # 登録するURLを表示する
     podcast_file_path = podcast_link + "podcast.rss"
 
-    # 登録するURLの表示とクリップボードへのコピー
+    # 登録するURLの表示ー
     print("Your URL of podcast is")
-    print(podcast_file_path)
-    pyperclip.copy(podcast_file_path)
+    print(f"{podcast_file_path}\n")
 
     # rssファイルを作成する
     create_rss_file(current_ip)
@@ -87,6 +86,14 @@ def main():
 
     # user_name.txtを作成する
     create_user_name_file()
+
+    # キー入力待ち
+    while True:
+        temp = input("Press the `Enter` key to exit.")
+        if not temp:
+            # 登録するURLをクリップボードへコピー
+            pyperclip.copy(podcast_file_path)
+            break
 
 
 if __name__ == "__main__":
