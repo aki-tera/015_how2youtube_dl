@@ -33,14 +33,19 @@ def create_rss_file(ip):
     if not os.path.isfile(file_path):
         with open(file_path, mode="w", encoding="utf-8")as f:
             f.write(html_body)
+        result = "Create podcast.rss"
     else:
-        print("Don't create podcast.rss, because it already exists.")
+        result = "Don't create podcast.rss, because it already exists."
+    
+    return result
 
 
 def create_json_file(dict):
     # 設定ファイルを作る
     with open("cgi-bin/setting_file.json", mode="w", encoding="utf-8")as f:
         json.dump(dict, f)
+    
+    return "Create setting_file.json"
 
 
 def create_user_name_file():
@@ -56,8 +61,11 @@ def create_user_name_file():
     if not os.path.isfile(file_path):
         with open(file_path, mode="w", encoding="utf-8")as f:
             f.write(file_body)
+        result = "Create user_name.txt"
     else:
-        print("Don't create user_name.txt, because it already exists.")
+        result = "Don't create user_name.txt, because it already exists."
+
+    return result
 
 
 def main():
@@ -75,21 +83,23 @@ def main():
     print(f"{podcast_file_path}\n")
 
     # rssファイルを作成する
-    create_rss_file(current_ip)
+    result = create_rss_file(current_ip)
+    print(f"\n{result}\n")
 
     # youtube_dlのダウンロードフォルダ設定
     podcast_path = os.getcwd().replace("\\", "/") + "/cgi-bin/podcast/"
-
     # 設定用のjsonファイルを作る
     setting_value = {"podcast_path": podcast_path, "podcast_link": podcast_link}
-    create_json_file(setting_value)
+    result = create_json_file(setting_value)
+    print(f"\n{result}\n")
 
     # user_name.txtを作成する
-    create_user_name_file()
+    result = create_user_name_file()
+    print(f"\n{result}\n")
 
     # キー入力待ち
     while True:
-        temp = input("Press the `Enter` key to exit.")
+        temp = input("\nPress the `Enter` key to exit. And your URL of podcast is copied to the clipboard.")
         if not temp:
             # 登録するURLをクリップボードへコピー
             pyperclip.copy(podcast_file_path)
