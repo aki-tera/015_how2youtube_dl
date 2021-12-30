@@ -71,8 +71,6 @@ if ("username" in ydl_opts) is True:
     print('<p id="login_name">{}</p>'.format(ydl_opts["username"]))
 
 # プログレスバーを設置する
-
-
 print('<script type="text/javascript", src="progress.js"></script>')
 print('<div style="background-color:lightblue; padding:20px 20px 10px;">')
 print('<div id="progressBar"></div>')

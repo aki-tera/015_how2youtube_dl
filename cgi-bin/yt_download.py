@@ -150,8 +150,8 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
         file type
         time stamp
     """
-# 実際のダウンロード処理
 
+# 実際のダウンロード処理
     try:
         with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
             info_dict = ydl.extract_info(YT_url, download=False)
@@ -325,6 +325,4 @@ def main():
     return
 
 # 実行のメイン
-
-
 main()
