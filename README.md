@@ -1,8 +1,8 @@
 # 015_youtube_dl2podcast
 
-![](https://img.shields.io/badge/type-python3-brightgreen)  ![](https://img.shields.io/badge/windows%20build-passing-brightgreen) ![](https://img.shields.io/badge/license-MIT-brightgreen)   
-![](https://img.shields.io/badge/Server-Apache-red) ![](https://img.shields.io/badge/SmartPhone-iPhone-red)  
-![](https://img.shields.io/badge/libraly-youtube_dl-blue)  
+![python3](https://img.shields.io/badge/type-python3-brightgreen)  ![passing](https://img.shields.io/badge/windows%20build-passing-brightgreen) ![MIT](https://img.shields.io/badge/license-MIT-brightgreen)  
+![Apache](https://img.shields.io/badge/Server-Apache-red) ![iPhone](https://img.shields.io/badge/SmartPhone-iPhone-red)  
+![youtube_dl](https://img.shields.io/badge/libraly-youtube_dl-blue)  
 
 ## DEMO
 
@@ -12,7 +12,7 @@
 
 ### You can watch the videos registered in RSS with the podcast application on your smartphone  
 
-<img src="https://user-images.githubusercontent.com/44888139/143861364-f32db240-497e-4ad8-b9f6-fdda529f482e.png" width="250px"> 
+<img src="https://user-images.githubusercontent.com/44888139/143861364-f32db240-497e-4ad8-b9f6-fdda529f482e.png" width="250px">
 
 ## Features
 
@@ -57,6 +57,7 @@ Python Library
   - json
 
 Podcast software
+
 - Apple Podcast App
 
 ## Usage
@@ -73,7 +74,7 @@ Podcast software
 ### How to use (Execution)
 
 1. Run apache.
-1. Open "localhost" in your browser 
+1. Open "localhost" in your browser
 1. See the operation in the picture above
 1. Finally update your Podcast App.
 
@@ -83,7 +84,7 @@ Podcast software
 
 If you want to change the podcast cover, please overwrite "cgi-bin\art-work\001.png".  
 Apple recommends the following, but I think 400px x 400px is also possible.  
-(https://podcasters.apple.com/support/896-artwork-requirements)  
+(<https://podcasters.apple.com/support/896-artwork-requirements>)  
 
 - jpeg or png
 - Square
@@ -143,7 +144,7 @@ Python & HTTP Server
 ### ポッドキャストの画像変更に関して
 
 このファイル"cgi-bin\art-work\001.png"を上書きして下さい。  
-Appleは以下の内容を推奨していますが、画素サイズは400px x 400pxでも大丈夫です。 
+Appleは以下の内容を推奨していますが、画素サイズは400px x 400pxでも大丈夫です。
 
 - jpeg or png
 - 正方形
