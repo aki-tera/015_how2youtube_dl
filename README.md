@@ -31,7 +31,7 @@ If you register the url in the podcast app, you can watch the videos you get fro
 
 ## Requirement
 
-Python & HTTP Server
+Python & HTTP Server & Smartphone
 
 - I ran this program with the following execution environment.
   - Windows 10
