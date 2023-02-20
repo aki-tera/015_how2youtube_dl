@@ -15,7 +15,7 @@ import io
 import xml.etree.ElementTree as ET
 
 # youtubeのダウンロード
-import youtube_dl
+import yt_dlp as youtube_dl
 
 # 一番新しいファイルを取得
 import glob
