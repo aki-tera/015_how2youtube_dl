@@ -251,7 +251,8 @@ def main():
     url, select_option = post_data.split(",")
 
     # 表示しないオプション設定
-    ydl_opts = {"quiet": True}
+    ydl_opts = {"quiet": True, "noprogress": True}
+
 
     # ログインが必要な場合の処理
     if select_option == "cookie":
