@@ -1,7 +1,7 @@
 #!C:\Python\Python38\python.exe
 # -*- coding:utf-8 -*-
 
-import youtube_dl
+import yt_dlp as youtube_dl
 import cgi
 
 
