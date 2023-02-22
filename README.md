@@ -2,11 +2,11 @@
 
 ![python3](https://img.shields.io/badge/type-python3-brightgreen)  ![passing](https://img.shields.io/badge/windows%20build-passing-brightgreen) ![MIT](https://img.shields.io/badge/license-MIT-brightgreen)  
 ![Apache](https://img.shields.io/badge/Server-Apache-red) ![iPhone](https://img.shields.io/badge/SmartPhone-iPhone-red)  
-![youtube_dl](https://img.shields.io/badge/libraly-youtube_dl-blue)  
+![yt_dlp](https://img.shields.io/badge/libraly-yt_dlp-blue)  
 
 ## DEMO
 
-### This is a program that can create RSS feeds of videos retrieved by youtube_dl
+### This is a program that can create RSS feeds of videos retrieved by yt_dlp
 
 <img src="https://user-images.githubusercontent.com/44888139/143860818-53d49fbb-8e36-40d8-ac5d-34cb66684152.png" width="250px"> <img src="https://user-images.githubusercontent.com/44888139/143860972-8d79e6b4-e564-4272-8bdb-8311ccd3349b.png" width="250px">  <img src="https://user-images.githubusercontent.com/44888139/143861091-0ce1f586-178f-47c6-926f-4ae28f50fe4b.png" width="250px">  
 
@@ -16,11 +16,11 @@
 
 ## Features
 
-If you register the url in the podcast app, you can watch the videos you get from youtube_dl on your smartphone.
+If you register the url in the podcast app, you can watch the videos you get from yt_dlp on your smartphone.
 
 ### specification
 
-- The supported videos are what youtube_dl can go.
+- The supported videos are what yt_dlp can go.
 - If you need to log in, you can do in the following two ways
   - You can be handled by setting usernames and login passwords for each services.
   - If the above is not possible, you can use `cookie.txt`.
@@ -35,16 +35,16 @@ Python & HTTP Server & Smartphone
 
 - I ran this program with the following execution environment.
   - Windows 10
-    - Python 3.9
+    - Python 3.8
     - Apache HTTP Server 2.4
   - iPhone11
-    - ios 14.8/ios 15.2
+    - ios 14.8/ios 15.6
     - Apple Podcast App
 
 Python Library
 
 - the external package
-  - youtube_dl
+  - yt_dlp
   - pyperclip
 - the standard library
   - cgi, cgitb
@@ -102,10 +102,10 @@ This program is under MIT license.
 
 ## 機能
 
-Youtube_dlで取得したビデオを、Podcastに登録できるようにします。
+yt_dlpで取得したビデオを、Podcastに登録できるようにします。
 
 - 仕様
-  - ビデオはYoutube_dlで対応しているものです。
+  - ビデオはyt_dlpで対応しているものです。
   - ログインが必要な場合、以下の2通りで対応できます。
     - サービスごとにユーザネームとパスワードの登録が可能
     - 上記で対応できない場合は、`cookie.txt`を対応
@@ -118,8 +118,8 @@ Youtube_dlで取得したビデオを、Podcastに登録できるようにしま
 
 Python & HTTP Server
 
-- このプログラムは、Windows10上で、Python 3.9とApache HTTP Server 2.4で動作確認しています。
-- スマホ側は、iPhone11(ios14.8/ios15.2)のPodcast Appで動作確認しています。
+- このプログラムは、Windows10上で、Python 3.8とApache HTTP Server 2.4で動作確認しています。
+- スマホ側は、iPhone11(ios14.8/ios15.6)のPodcast Appで動作確認しています。
 
 ## 使い方
 
