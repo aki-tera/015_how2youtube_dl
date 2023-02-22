@@ -15,7 +15,7 @@ import io
 import xml.etree.ElementTree as ET
 
 # youtubeのダウンロード
-import youtube_dl
+import yt_dlp as youtube_dl
 
 # 一番新しいファイルを取得
 import glob
@@ -152,22 +152,11 @@ def yt_download(YT_url, YT_ydl_opts, YT_down_dir):
     """
 
 # 実際のダウンロード処理
-    try:
-        with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
-            info_dict = ydl.extract_info(YT_url, download=False)
-            video_title = info_dict.get("title", None)
-            video_description = info_dict.get("description", None)
-            ydl.download([YT_url])
-    except BaseException:
-        # エラーが出た際に継続処理をさせる
-        YT_ydl_opts["continue"] = True
-        for i in range(300):
-            try:
-                with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
-                    ydl.download([YT_url])
-                break
-            except BaseException:
-                time.sleep(60)
+    with youtube_dl.YoutubeDL(YT_ydl_opts) as ydl:
+        info_dict = ydl.extract_info(YT_url, download=False)
+        video_title = info_dict.get("title", None)
+        video_description = info_dict.get("description", None)
+        ydl.download([YT_url])
 
 # ファイルの詳細情報を入手する
     video_title = string_standardized(video_title)
@@ -245,7 +234,7 @@ class MyLogger(object):
 
 # 進捗確認のためのプログレスバー用カウンタ
 def my_hook(d):
-    count = f'{int(d["downloaded_bytes"]/d["total_bytes"]*100)}'
+    count = f'{int(d["_percent_str"].split(".")[0])}'
     with open("../htdocs/counter.txt", mode="w")as f:
         f.write(count)
 
@@ -262,7 +251,8 @@ def main():
     url, select_option = post_data.split(",")
 
     # 表示しないオプション設定
-    ydl_opts = {"quiet": True}
+    ydl_opts = {"quiet": True, "noprogress": True}
+
 
     # ログインが必要な場合の処理
     if select_option == "cookie":
