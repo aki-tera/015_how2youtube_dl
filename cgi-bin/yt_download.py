@@ -1,4 +1,4 @@
-#!C:\Python\Python38\python.exe
+#!C:\Python\Python311\python.exe
 # -*- coding:utf-8 -*-
 
 import cgi
